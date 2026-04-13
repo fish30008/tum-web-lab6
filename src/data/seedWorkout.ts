@@ -2,29 +2,75 @@ export type Workout = {
   id: string
   name: string
   muscleGroup: string
-  difficulty: string
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced'
   duration: number
+  sets: number
+  reps: number
   gifUrl: string
   liked: boolean
+  description?: string
 }
+
+export const muscleGroups = [
+  'Chest',
+  'Back',
+  'Legs',
+  'Shoulders',
+  'Arms',
+  'Core',
+  'Full Body',
+  'Cardio'
+] as const
+
+export const difficulties = ['Beginner', 'Intermediate', 'Advanced'] as const
 
 export const seedWorkouts: Workout[] = [
   {
     id: '1',
     name: 'Push Ups',
     muscleGroup: 'Chest',
-    difficulty: 'Easy',
+    difficulty: 'Beginner',
     duration: 10,
+    sets: 3,
+    reps: 15,
     gifUrl: 'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmNqNzRzOXF6NjI3eDZudXpnanFmZXV2Y29sZDlxZTkzNHVldzF5YSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zIOdLMZDcBDc2gk6vV/giphy.gif',
     liked: false,
+    description: 'Classic bodyweight exercise for upper body strength'
   },
   {
     id: '2',
     name: 'Squats',
     muscleGroup: 'Legs',
-    difficulty: 'Medium',
+    difficulty: 'Beginner',
     duration: 15,
+    sets: 3,
+    reps: 20,
     gifUrl: 'https://media.giphy.com/media/3o7TKtnuHOHHUjR38Y/giphy.gif',
     liked: false,
+    description: 'Fundamental lower body exercise for leg strength'
   },
+  {
+    id: '3',
+    name: 'Pull Ups',
+    muscleGroup: 'Back',
+    difficulty: 'Intermediate',
+    duration: 12,
+    sets: 3,
+    reps: 8,
+    gifUrl: 'https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzR5bG5oZnF6eW5rYjN3YzR5b2J6Y3k0eWU5dGJ0eGZ6eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0HlHc5sYLkzQnPm0/giphy.gif',
+    liked: false,
+    description: 'Excellent back and bicep compound exercise'
+  },
+  {
+    id: '4',
+    name: 'Plank',
+    muscleGroup: 'Core',
+    difficulty: 'Beginner',
+    duration: 5,
+    sets: 3,
+    reps: 1,
+    gifUrl: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW9hZzR5bG5oZnF6eW5rYjN3YzR5b2J6Y3k0eWU5dGJ0eGZ6eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7abB06u9bNzA8LC8/giphy.gif',
+    liked: false,
+    description: 'Isometric core strength exercise'
+  }
 ]
