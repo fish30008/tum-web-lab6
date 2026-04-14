@@ -3,6 +3,7 @@ import './App.css'
 import type { Workout } from './data/seedWorkout'
 import AddWorkoutForm from './components/AddWorkoutForm'
 import type { NewWorkoutInput } from './components/AddWorkoutForm'
+import ThemeToggle from './components/ThemeToggle'
 import WorkoutCard from './components/WorkoutCard'
 import {
   defaultWorkoutFilters,
@@ -16,10 +17,17 @@ import {
   saveFiltersToStorage,
   saveWorkoutsToStorage,
 } from './utils/workoutStorage'
+import {
+  applyThemeToDocument,
+  loadThemeFromStorage,
+  saveThemeToStorage,
+} from './utils/themeStorage'
+import type { AppTheme } from './utils/themeStorage'
 
 function App() {
   const [workouts, setWorkouts] = useState<Workout[]>(loadWorkoutsFromStorage)
   const [filters, setFilters] = useState<WorkoutFilters>(loadFiltersFromStorage)
+  const [theme, setTheme] = useState<AppTheme>(loadThemeFromStorage)
 
   useEffect(() => {
     saveWorkoutsToStorage(workouts)
@@ -28,6 +36,11 @@ function App() {
   useEffect(() => {
     saveFiltersToStorage(filters)
   }, [filters])
+
+  useEffect(() => {
+    applyThemeToDocument(theme)
+    saveThemeToStorage(theme)
+  }, [theme])
 
   const availableMuscleGroups = useMemo(() => getAvailableMuscleGroups(workouts), [workouts])
 
@@ -59,9 +72,16 @@ function App() {
     setFilters(defaultWorkoutFilters)
   }
 
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'))
+  }
+
   return (
     <div className="app-container">
-      <h1>Workout App</h1>
+      <div className="app-toolbar">
+        <h1>Workout App</h1>
+        <ThemeToggle theme={theme} onToggle={toggleTheme} />
+      </div>
 
       <AddWorkoutForm onAddWorkout={addWorkout} />
 

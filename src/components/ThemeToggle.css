@@ -1,0 +1,13 @@
+.theme-toggle-btn {
+  border: 1px solid var(--border-color);
+  background: var(--btn-bg);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 0.6rem 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--hover-bg);
+}
