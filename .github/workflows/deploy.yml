@@ -22,7 +22,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: tum-web-lab6/workout-app
+        working-directory: workout-app # Updated path
 
     steps:
       - name: Checkout repository
@@ -40,7 +40,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: tum-web-lab6/workout-app/package-lock.json
+          cache-dependency-path: workout-app/package-lock.json # Updated path
 
       - name: Install dependencies
         run: npm ci
@@ -51,7 +51,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: tum-web-lab6/workout-app/dist
+          path: workout-app/dist # Updated path
 
   deploy:
     needs: build
